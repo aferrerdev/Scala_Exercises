@@ -1,0 +1,47 @@
+TAP Scala:
+===========================================================================
+- Tipos de variables:
+
+	val: inmutable, no puedo reasignar nada a val.
+	var: si que se puede reasignar.
+
+	Endivina el tipo de la variable por inferencia de tipos.
+===========================================================================
+
+- Condicionales.
+
+	 val news = if (true)
+	      "good"
+	    else
+	      "bad"
+
+	 Lo que pongamos despues del if o el else es el retorno.
+
+	 Pattermatching:
+	 news match {
+	      case "good" => println("Good news!")
+	      case "bad" => println("Bad news!")
+	      case _ => println("default!")
+	    }
+===========================================================================
+
+ - Functions
+
+ Unit equival a void.
+
+ ===========================================================================
+
+- Curry
+
+	Uso de clousures (funciones anonimas).
+
+===========================================================================
+
+- PatterMatching
+
+===========================================================================
+
+- Mutable: puedo modificar la variable.
+- Immutable: no puedo modificar esa variable.
+
+Lista Mutable: ListBuffer,

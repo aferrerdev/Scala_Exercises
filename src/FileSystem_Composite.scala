@@ -51,12 +51,12 @@ class Directory(val name:String) extends AComponent{
   private var children:ListBuffer[AComponent]=new ListBuffer[AComponent]()
 
   def addChild(child:AComponent): Unit ={
-    children+=child
+      children+=child
   }
   def removeChild(child:AComponent):Unit={
-    children-=child
+      children-=child
   }
   override def size={
-    children.map(_.size).sum
+      children.map(_.size).sum
   }
 }
