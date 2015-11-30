@@ -141,8 +141,12 @@ object Exercises1 extends scala.App
   // You have to make this function by stack recursion.
   // ex.   Main> power 3 4
   // 81 :: Integer
-
-
+  def power(number:Int, toRise:Int):Int = toRise match{
+      case 0 => 1
+      case x => number * power(number,x-1)
+  }
+  println("\n Exercise 7 power()")
+  println(power(2,4))
 
 
   // Implement a central function that receives a list by parameter and return one structure with three elements:
@@ -152,6 +156,14 @@ object Exercises1 extends scala.App
   // Use cumulative recursion. The elements has to keep the initial order.
   // ex.   Main> central "362741"
   // ('3',"21","674") :: (Char,[Char],[Char])
+
+
+  def central(lista:List[Char]):(Char,List[Char],List[Char]) = lista match{
+      case Nil => (0,Nil,Nil)
+      case x :: xs =>{
+          (x,Nil,Nil)
+      }
+  }
 
 
 
