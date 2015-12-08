@@ -1,0 +1,26 @@
+Examen Scala:
+
+1. Reursividad listas, accumulativa, stack, tail.
+2. Funcion que se pueda resolver con funciones recursivas del mismo sistema, map, filter, max, maxby, minby, foldright con pila (REDUCE), foldright con acumulativa (Accumulate)... (Tal vez se solucione en una sola linea), clousures
+3. Igual que el dos pero con clases. Ejemplo: de una lista de persona devolver cuantas personas hay mayores de 70 años.
+Ejemplo: Suma de las edades de las pesronas fold(t,t t -> t, t)
+
+case class Person(name:string, age:int)
+val list = List(Person,Person,Person)
+
+Forma faci:
+list.filter(_.age > 70).length
+list.filter(x -> x.age > 70).lenght
+
+Otra: suma de las edades de mayores de 70.
+list.filter(_.age > 70).map(_.age).sum
+list.filter(_.age > 70).map( x -> x.age).sum
+
+Otra: usando folder el ejercicio anterior. fold tiene 2 parametros, un valor por defecto y una funcion con dos parametros.
+list.filter(_.age > 70).foldright
+list.filter(_.age > 70).foldright
+
+4. Higher order (funciones de alto orden): funcion que como parametro se le va a pasar una función.
+5. Convierte el 4 a curry y Parametrización parcial.
+6. Composite y modificarlo.
+

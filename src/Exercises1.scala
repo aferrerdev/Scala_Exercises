@@ -157,13 +157,29 @@ object Exercises1 extends scala.App
   // ex.   Main> central "362741"
   // ('3',"21","674") :: (Char,[Char],[Char])
 
-
-  def central(lista:List[Char]):(Char,List[Char],List[Char]) = lista match{
-      case Nil => (0,Nil,Nil)
+  def central(ini:Int, menors:List[Int], majors:List[Int], lista:List[Int]):(Int,List[Int],List[Int]) = lista match{
+      case Nil => (ini,menors,majors)
       case x :: xs =>{
-          (x,Nil,Nil)
+          central(ini,
+            (if(x < ini)
+              x :: menors
+            else
+              menors),
+            if(x > ini)
+              x :: majors
+            else
+              majors,
+            lista
+        )
       }
   }
+
+  //var menors = List[Int]
+  //var majors = List[Int]
+  //var ini = 3
+  //var lista = List(0,1,2,3,4,5)
+
+  //var tupla = central(ini,menors,majors,lista)
 
 
 
