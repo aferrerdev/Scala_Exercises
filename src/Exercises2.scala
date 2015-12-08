@@ -9,6 +9,30 @@ object Exercises2 extends scala.App{
   -- The filter function return one list forming by elements of th original list
   -- The elements of this list has to accomplish the predicate established by function (first parameter)
   -- Example: filter (isLessThan 3) [1,7,2,9,67,3];*/
+  println("\n LLista 2 Exercicis: \n Exercici 1: implementar una funcion en alto orden llamada filter.")
+  def filter[T](f:(T => Boolean), lista:List[T]):List[T] = lista match {
+      case Nil => Nil
+      case x :: lista => {
+          if(f(x))
+            x::filter(f,lista)
+          else
+            filter(f,lista)
+      }
+  }
+  var lista = List(1,7,2,9,67,3)
+  // Definim la funcio que volem filtrar a la llista:
+  def isLessThan3(x:Int):Boolean ={
+    if(x < 3)
+      true
+    else
+      false
+  }
+  // Li passem la funció creada.
+  var lista_filtrada = filter(isLessThan3, lista)
+  println(lista_filtrada)
+  // Podem definir la funcio a comprovar en el filter dins de la crida a filter.
+  lista_filtrada = filter((x:Int) => if(x < 3) true else false, lista)
+  println(lista_filtrada)
 
 
 /* ------------------------------------------------------------------------------------------------------------------
@@ -17,8 +41,21 @@ object Exercises2 extends scala.App{
   --addition x y = x+y
   --Example: zipWith addition [1,2,3] [4,5,6]
   --[5,7,9]*/
-
-
+  println("\n Exercici 2: implementar zipwith function.")
+  def addition(x:Int, y:Int):Int ={
+    x+y
+  }
+  //list1.map(x=>addition())
+  def zipWith(f:((Int,Int) => Int), list1:List[Int], list2:List[Int]):List[Int] = list1 match {
+      case Nil => Nil
+      case x :: list1 =>{
+        addition(x,list2.head)::zipWith(f,list1,list2.tail)
+      }
+  }
+  var list1 = List(1,2,3)
+  var list2 = List(4,5,6)
+  var lista_final = zipWith(addition,list1,list2)
+  lista_final.foreach(println)
 
 /* ------------------------------------------------------------------------------------------------------------------
   -- Create 'divide' function that receive one list 'xs' and a condition 'f' and return (ys, zs).  Where
