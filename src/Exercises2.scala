@@ -27,7 +27,7 @@ object Exercises2 extends scala.App{
     else
       false
   }
-  // Li passem la funció creada.
+  // Li passem la funciï¿½ creada.
   var lista_filtrada = filter(isLessThan3, lista)
   println(lista_filtrada)
   // Podem definir la funcio a comprovar en el filter dins de la crida a filter.
@@ -63,8 +63,18 @@ object Exercises2 extends scala.App{
   -- 'zs' = rest of elements
   --Example: divide (<3) [1..5]
   --([1,2],[3,4,5]).*/
-
-
+  println("\n Exercici 3: divide(xs,function) function.")
+  def divide(lista:List[Int],f:(Int=>Boolean)):(List[Int],List[Int]) = lista match {
+    case Nil => (Nil, Nil)
+    case x :: xs => {
+        if(f(x) == true)
+          (x::divide(xs,f)._1,divide(xs,f)._2)
+        else
+          (divide(xs,f)._1,x::divide(xs,f)._2)
+    }
+  }
+  var result = divide(List(1,2,3,4,5),isLessThan3)
+  println(result)
 
 /* ------------------------------------------------------------------------------------------------------------------
   -- Implement "foldr_filter" that calculate one operation on all elements of the list that accomplish a specific condition
