@@ -81,17 +81,49 @@ object Exercises2 extends scala.App{
   -- foldr_filter has the form:  <foldr_filter  condition  operation initial_value  list>
   -- ej. foldr_filter (>4) (+) 0 [3,6,4,5] --> 11
   -- It add 5 and 6*/
+  println("\n Exercici 4: fold_filter function.")
+  def major4(number:Int):Boolean = if(number > 4) true else false
+  def sum(x:Int,y:Int):Int = x + y
+  def foldr_filter(f:(Int => Boolean),op:((Int,Int)=>Int), initial:Int, lista:List[Int]):Int = lista match {
+    case Nil => initial
+    case x :: xs =>{
+        if(f(x))
+            foldr_filter(f,op,initial+x,xs)
+        else
+            foldr_filter(f,op,initial,xs)
+    }
+  }
+  println(foldr_filter(major4,sum,0,List(3,6,4,5)));
 
-
-//-- EXERCISES MAL, FILTER, FOLDR:
+//-- EXERCISES MAP, FILTER, FOLDR:
 /* ------------------------------------------------------------------------------------------------------------------
   -- Create "count_car" function that contains like parameter one character and one list of strings and
   -- return the number of times that appear this character in string but that begin by this character.
   -- All strings are in lower case. Do that using MAP, FILTER AND FOLDR.
   -- ej . Main> count_car 'e' ["el","examen","esta","especialmente","escogido","entre","los","mas","elementales"]
   -- 15 :: Integer*/
+  println("\n Exercici 5: MAP/FILTER/FOLDR count_character function")
+  // MAP
+  def count_car_map(caracter:Char, lista:List[String]):Int = lista match {
+      case Nil => 0
+      case x :: xs =>{
+          x.count(_ == caracter) + count_car_map(caracter,xs)
+      }
+  }
+  val listaStrings:List[String] = List("el","examen","esta","especialmente","escogido","entre","los","mas","elementales")
 
+  // MAP personal
+  println("Resultado count_car_map: "+ count_car_map('e',listaStrings))
 
+  // MAP Scala
+  println("Resultado map Scala: "+ listaStrings.map(palabra => palabra.count(_ == 'e')).sum)
+
+  // Filter Scala
+  println("Resultado filter Scala: "+ listaStrings.filter(palabra => if(palabra.contains('e')) true else false))
+
+  // FoldScala
+  println("Resultado foldLeft Scala: "+ listaStrings.foldLeft(0) ((number:Int, palabra:String)=> number + palabra.count(_ == 'e')))
+  println("Resultado foldRight Scala: "+ listaStrings.foldRight(0) ((palabra:String, number:Int)=> number + palabra.count(_ == 'e')))
 
 /* ------------------------------------------------------------------------------------------------------------------
   -- Create "remove_primes" that receive one number and integer list and

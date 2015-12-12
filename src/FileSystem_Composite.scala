@@ -32,7 +32,6 @@ object RunFileSystem extends scala.App{
 trait AComponent{
   def size:Int
 }
-
 /**
  * File Object.
  * @param name
@@ -42,7 +41,6 @@ class File(val name:String, val amount:Int) extends AComponent
 {
   override def size = amount
 }
-
 /**
  * Directory Object.
  * @param name
