@@ -132,7 +132,19 @@ object Exercises2 extends scala.App{
   -- Clue: The prime numbers are numbers whose length factoring is 1.
   -- ex. Main> remove_primes 100 [2,3,4,5,6,7,8,9,10]
   --           83 :: Integer*/
-
+  println("\n Exercici 6: remove_primes")
+  def remove_primes(number:Int, acc:Int, lista:List[Int]):Int = lista match {
+      case Nil => acc
+      case x :: xs =>{
+        if((number % x) == 1)
+          remove_primes(number,acc-x,xs)
+        else
+          remove_primes(number,acc,xs)
+      }
+  }
+  println(remove_primes(100,100,List(2,3,4,5,6,7,8,9,10)))
+  var numbers = List(2,3,4,5,6,7,8,9,10)
+  println(100 - numbers.filter(elem => 100 % elem == 1).sum)
 
 /* ------------------------------------------------------------------------------------------------------------------
 
@@ -174,12 +186,31 @@ object Exercises2 extends scala.App{
 /* ------------------------------------------------------------------------------------------------------------------
   -- Test map function with different functions: Increase on one, multiply times 2, ...
   -- Create map_inc function in high level that parametrize partly the map.*/
+  println("\n Exercici Map Function with diferents functions (High Order)")
+  def map_inc(f:(Int => Int),lista:List[Int]):List[Int] = lista match {
+      case Nil => Nil
+      case x :: xs => f(x)::map_inc(f,xs)
+  }
+  def increaseOne(number:Int):Int = number + 1
+  def multiply2times(number:Int):Int = number * 2
 
+  println(map_inc(increaseOne,List(1,2,3)))
+  println(map_inc(multiply2times,List(1,2,3)))
 
 /* ------------------------------------------------------------------------------------------------------------------
   -- Implement "add_pairs" parametrizing partly foldr_filter in order to that add couple numbers in one list. (Always begin from 0)
   -- ej. add_pairs [2,4,5,6]  --> 12  // It add 2,4 and 6*/
-
+  println("\n Exercici add_pairs")
+  def add_pairs(acc:Int, numberList:List[Int]):Int = numberList match {
+      case Nil => acc
+      case x :: xs =>{
+          if(x % 2 == 0)
+              add_pairs(x + acc, xs)
+          else
+              add_pairs(acc, xs)
+      }
+  }
+  println(add_pairs(0,List(1,2,3,4,5)))
 
 /* ------------------------------------------------------------------------------------------------------------------
   -- Implement "put_zeros" function that receive one number and return one 1 followed by number of 0 that is indicated.
